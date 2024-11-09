@@ -28,7 +28,7 @@ import Dictionary from './components/service/Dictionary.jsx'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
-    <Route path='' element={<Home/>} />
+    <Route path='/' element={<Home/>} />
     <Route path='about' element={<About/>}/>
     <Route path='contact' element={<Contact/>}/>
     <Route path='login' element={<Login/>}/>
@@ -36,14 +36,14 @@ const router = createBrowserRouter(
     <Route path='reset-password' element={<ForgotPassword/>}/>
     <Route path='profile' element={<UserProfile/>}/>
     <Route path='services' element={<Services/>}>
-      <Route path='notes' element={<Notes/>}/>
+      {/* <Route path='notes' element={<Notes/>}/>
       <Route path='todo' element={<ToDo/>}/>
       <Route path='web-search' element={<Web/>}/>
       <Route path='youtube' element={<Youtube/>}/>
       <Route path='homework' element={<Homework/>}/>
       <Route path='book' element={<Book/>}/>
       <Route path='calculator' element={<Calculator/>}/>
-      <Route path='dict' element={<Dictionary/>}/>
+      <Route path='dict' element={<Dictionary/>}/> */}
     </Route>
     </Route>
   )
