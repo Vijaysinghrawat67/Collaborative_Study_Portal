@@ -2,10 +2,12 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo_Image from '../../assets/logo_Image.png';
 import ProfileDropdown from '../ProfileDropdown.jsx'
+import { useAuth } from '../../authContest/AuthContext.jsx';
 
 
 
-function Header({isLoggedIn, handleLogout}) {
+function Header() {
+    const {isLoggedIn, logout} = useAuth();
     return (
         <header className="  shadow sticky z-50 top-0  rounded-sm">
             <nav className="bg-customGray border-gray-200 px-4 lg:px-6 py-2.5">
@@ -20,7 +22,7 @@ function Header({isLoggedIn, handleLogout}) {
                     <div className="flex items-center lg:order-2">
                         {/* dinamically chainging the render base on the login state start */}
                         {isLoggedIn ? (
-                            <ProfileDropdown handleLogout={handleLogout} />
+                            <ProfileDropdown handleLogout={logout} />
                         ) : (
                             <>
                                 <Link

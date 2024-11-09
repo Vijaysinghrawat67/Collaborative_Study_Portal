@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom'; // Assuming you're using React Router f
 import { FaRegStickyNote, FaSearch, FaYoutube, FaBook, FaCalculator, FaTasks, FaHome ,FaBookOpen} from 'react-icons/fa'; // Icons for each service
 
 const services = [
-  { title: "Notes Making", icon: <FaRegStickyNote size={50} />, link: "/notes" },
-  { title: "Web Search", icon: <FaSearch size={50} />, link: "/web-search" },
-  { title: "YouTube Search", icon: <FaYoutube size={50} />, link: "/youtube" },
-  { title: "Dictionary", icon: <FaBook size={50} />, link: "/dictionary" },
-  { title: "Calculators", icon: <FaCalculator size={50} />, link: "/calculators" },
-  { title: "To-Do List", icon: <FaTasks size={50} />, link: "/todo" },
-  { title: "Homework", icon: <FaHome size={50} />, link: "/homework" },
-  { title: "Book Search", icon:<FaBookOpen size={50} />, link:"/book"}
+  { title: "Notes Making", icon: <FaRegStickyNote size={50} />, link: "/services/notes" },
+  { title: "Web Search", icon: <FaSearch size={50} />, link: "/services/web-search" },
+  { title: "YouTube Search", icon: <FaYoutube size={50} />, link: "/services/youtube" },
+  { title: "Dictionary", icon: <FaBook size={50} />, link: "/services/dictionary" },
+  { title: "Calculators", icon: <FaCalculator size={50} />, link: "/services/calculators" },
+  { title: "To-Do List", icon: <FaTasks size={50} />, link: "/services/todo" },
+  { title: "Homework", icon: <FaHome size={50} />, link: "/services/homework" },
+  { title: "Book Search", icon:<FaBookOpen size={50} />, link:"/services/book"}
 ];
 
 function Services() {

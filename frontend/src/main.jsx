@@ -1,57 +1,65 @@
-import React from 'react' 
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import {Route, RouterProvider, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
-import Layout from './Layout.jsx';
-import Home from'./components/pages/Home.jsx';
-import Contact from './components/pages/Contact.jsx';
-import About from './components/pages/About.jsx'
-import Services from './components/pages/Services.jsx'
-import Login from './components/auth/Login.jsx'
-import Registration from './components/auth/Registration.jsx'
-import ForgotPassword from './components/auth/ForgotPassword.jsx'
-import UserProfile from './components/auth/UserProfile.jsx'
+import React from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import { AuthProvider } from './authContest/AuthContext.jsx';
 
-import Notes from './components/service/Notes.jsx';
+import Layout from './Layout/Layout.jsx';
+import Home from './components/pages/Home.jsx';
+import Contact from './components/pages/Contact.jsx';
+import About from './components/pages/About.jsx';
+import Services from './components/pages/Services.jsx';
+import Login from './components/auth/Login.jsx';
+import Registration from './components/auth/Registration.jsx';
+import ForgotPassword from './components/auth/ForgotPassword.jsx';
+import UserProfile from './components/auth/UserProfile.jsx';
+import NotesContainer from './components/service/NotesRoute/Notes/NotesContainer.jsx';
 import ToDo from './components/service/ToDo.jsx';
 import Web from './components/service/Web.jsx';
 import Youtube from './components/service/Youtube.jsx';
 import Homework from './components/service/Homework.jsx';
-import Book from './components/service/Book.jsx'
-import Calculator from './components/service/Calculator.jsx'
-import Dictionary from './components/service/Dictionary.jsx'
-
-
+import Book from './components/service/Book.jsx';
+import Calculator from './components/service/Calculator.jsx';
+import Dictionary from './components/service/Dictionary.jsx';
+import CreateNote from './components/service/NotesRoute/Notes/CreateNote.jsx';
+import NotesList from './components/service/NotesRoute/Notes/NotesList.jsx';
+import PrivateRoute from './components/service/NotesRoute/PrivateRouteNote.jsx';  // Private route for protecting routes
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
-    <Route path='/' element={<Home/>} />
-    <Route path='about' element={<About/>}/>
-    <Route path='contact' element={<Contact/>}/>
-    <Route path='login' element={<Login/>}/>
-    <Route path='register' element={<Registration/>}/>
-    <Route path='reset-password' element={<ForgotPassword/>}/>
-    <Route path='profile' element={<UserProfile/>}/>
-    <Route path='services' element={<Services/>}>
-      {/* <Route path='notes' element={<Notes/>}/>
-      <Route path='todo' element={<ToDo/>}/>
-      <Route path='web-search' element={<Web/>}/>
-      <Route path='youtube' element={<Youtube/>}/>
-      <Route path='homework' element={<Homework/>}/>
-      <Route path='book' element={<Book/>}/>
-      <Route path='calculator' element={<Calculator/>}/>
-      <Route path='dict' element={<Dictionary/>}/> */}
-    </Route>
+    <Route path='/' element={<Layout />}>
+      {/* Public Routes */}
+      <Route path='/' element={<Home />} />
+      <Route path='about' element={<About />} />
+      <Route path='contact' element={<Contact />} />
+      <Route path='login' element={<Login />} />
+      <Route path='register' element={<Registration />} />
+      <Route path='reset-password' element={<ForgotPassword />} />
+      <Route path='services' element={<Services />} />
+      <Route path='profile' element={<UserProfile />} />
+
+      {/* Private Routes (requires authentication) */}
+      <Route path='services/notes/*' element={<PrivateRoute element={<NotesContainer />} />}>
+        <Route path='create' element={<CreateNote />} />
+        <Route path='list' element={<NotesList />} />
+      </Route>
+
+      <Route path='services/todo' element={<PrivateRoute element={<ToDo />} />} />
+      <Route path='services/web-search' element={<PrivateRoute element={<Web />} />} />
+      <Route path='services/youtube' element={<PrivateRoute element={<Youtube />} />} />
+      <Route path='services/homework' element={<PrivateRoute element={<Homework />} />} />
+      <Route path='services/book' element={<PrivateRoute element={<Book />} />} />
+      <Route path='services/calculator' element={<PrivateRoute element={<Calculator />} />} />
+      <Route path='services/dict' element={<PrivateRoute element={<Dictionary />} />} />
     </Route>
   )
-)
+);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    < RouterProvider router={router}/>
-  </StrictMode>,
-)
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </StrictMode>
+);

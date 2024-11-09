@@ -1,40 +1,36 @@
-import React, {useState} from 'react'
-import { useNavigate, useOutletContext } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../authContest/AuthContext.jsx';  // Import useAuth
 
 function Login() {
-
   const [email, setUserInput] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  const {handleLogin} = useOutletContext();
+  const { login } = useAuth();  // Destructure login from useAuth
 
   const onLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2000/api/user/login', {
-        email,
-        password,
-      }, {withCredentials : true});
+      const response = await axios.post('http://localhost:2000/api/user/login', { email, password }, { withCredentials: true });
       console.log('Response:', response.data);
 
-      if(response.data.success){
-        const {accessToken, refreshToken} = response.data;
+      if (response.data.success) {
+        const { accessToken, refreshToken } = response.data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        
-        handleLogin(response.data.user);
+
+        login();  // Use login function from AuthContext
         navigate('/');
-      }
-      else { 
+      } else {
         setError('Login failed. Please check your credentials.');
       }
-      
+
     } catch (error) {
       console.error('Login error:', error);
       if (error.response) {
-       setError(error.response.data.message || 'Login failed')
+        setError(error.response.data.message || 'Login failed');
       } else {
         setError('An error occurred. Please try again later.');
       }
@@ -92,7 +88,6 @@ function Login() {
       </div>
     </div>
   );
-
 }
 
-export default Login
+export default Login;
