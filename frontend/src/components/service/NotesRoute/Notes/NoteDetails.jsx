@@ -1,24 +1,51 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 import { EditorState, convertFromRaw } from 'draft-js';
 import { Editor } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { useNavigate } from 'react-router-dom';
 
-function NoteDetails({ note }) {
+function NoteDetails({note}) {
   const navigate = useNavigate();
-  const editorState = EditorState.createWithContent(convertFromRaw(note.content));
+  if(!note){
+    return <div>No note Selected</div>;
+  }
 
+  // Convert raw content back to EditorState 
+  const contentState = convertFromRaw(note.content); 
+  const editorState = EditorState.createWithContent(contentState);
+
+  //const contentString = JSON.stringify(note.content, null, 2);
   return (
-    <div className="note-details p-8 max-w-3xl mx-auto">
-      <h2 className="text-3xl font-semibold mb-4">{note.title}</h2>
-      <Editor editorState={editorState} readOnly={true} />
-      <button
+    <div className='note-details p-4 border rounded shadow'>
+      <h3 className='text-xl font-bold mb-2'>{note.title}</h3>
+      {/* <pre>{contentString}</pre> */}
+      <Editor 
+        editorState={editorState} 
+        readOnly
+        toolbarHidden 
+        editorClassName="bg-white p-4 rounded shadow"
+      />
+      <button 
         onClick={() => navigate(-1)}
-        className="mt-4 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700"
-      >
-        Back
-      </button>
+        className='mt-4 px-4 py-2 bg-blue-600 text-white rou hover:bg-blue-700'
+        >
+          Back
+        </button>
     </div>
   );
-};
+}
 
-export default NoteDetails;
+export default NoteDetails
+
+
+// NoteDetails.jsx
+// import React from 'react';
+// function NoteDetails({ note }) {
+//   if (!note) return <div>No note selected</div>;
+//   const renderContent = (content) => {
+//     return content.blocks.map((block, index) => {
+//       return (
+//         <p key={index}> {block.text} </p>);
+//     });
+//   }; return (<div className="note-details p-4 border rounded shadow"> <h3 className="text-xl font-bold mb-2">{note.title}</h3> <div>{renderContent(note.content)}</div> </div>);
+// } export default NoteDetails;

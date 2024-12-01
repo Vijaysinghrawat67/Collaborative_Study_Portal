@@ -12,7 +12,7 @@ export const veryfyJWT =asyncHandler(async(req, _, next) => {
             throw new ApiError(404, "unauthorized request")
         }
 
-        console.log("Token:", token); // for debugging
+       // console.log("Token:", token); // for debugging
         const decodedToken = jwt.verify(token , process.env.ACCESS_TOKEN_SECRATE )
 
         const user = await UserModel.findById(decodedToken?._id).select("-password -refreshToken")

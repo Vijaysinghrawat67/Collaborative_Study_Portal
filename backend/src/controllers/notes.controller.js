@@ -11,6 +11,7 @@ import {Notes} from  "../models/Notes.model.js";
 //create operation
 //send response
 const createNotes = asyncHandler(async(req, res) => {
+    console.log("receved data:", req.body); // Check if user ID is present
     const {title, content} = req.body;
 
     if(!title || !content){
@@ -21,25 +22,27 @@ const createNotes = asyncHandler(async(req, res) => {
         )
      }
 
-    const note = await Notes.create({
-        user : req.user._id,
-        title,
-        content
-    });
+     try {
+         const note = await Notes.create({
+            user : req.user._id,
+            title,
+            content
+        });
+        if(!note){
+            throw new ApiError("Failed to create note");
+        }
 
-    if(!note){
         return res
-        .status(500)
-        .json(
-            new ApiResponse(500, null,"something went wrong while creating notes")
-        )
-    }
-
-    return res
     .status(201)
     .json(
         new ApiResponse(201, "notes created successfully...")
     )
+
+     } catch (error) {
+        console.error('Error creating note:', error.message); // Log detailed error
+         return res .status(500) .json( new ApiResponse(500, null, "Something went wrong while creating notes") );
+     }
+    
 })
 
 
@@ -61,11 +64,15 @@ const getNotes = asyncHandler(async(req, res) => {
 const updateNotes = asyncHandler(async(req, res) => {
     const { id } = req.params;
     const { title, content} = req.body;
+
+    if(!title || !content){
+        throw new ApiError(400, "titlr and content can't be null");
+    }
     
     const note = await Notes.findOneAndUpdate(
         {_id : id, user : req.user._id},
         {title, content},
-        {new : true}
+        {new : true, runValidators : true}
     );
 
     if(!note){

@@ -13,32 +13,34 @@ function Login() {
   const onLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:2000/api/user/login', { email, password }, { withCredentials: true });
-      console.log('Response:', response.data);
+      const response = await axios.post(
+        'http://localhost:2000/api/user/login',
+        { email, password },
+        { withCredentials: true }
+      );
 
-      if (response.data.success) {
-        const { accessToken, refreshToken } = response.data;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
+      // Log the full response to confirm structure
+     // console.log("Full response data:", JSON.stringify(response.data, null, 2));
 
-        login();  // Use login function from AuthContext
-        navigate('/');
+      // Extract tokens based on confirmed structure
+      const accessToken = response.data.data?.accessToken;
+      //const refreshToken = response.data.data?.refreshToken;
+
+      if (accessToken) {
+        login(accessToken); // Log in user with accessToken
+        navigate('/'); // Navigate to the home page
       } else {
-        setError('Login failed. Please check your credentials.');
+        setError('Login failed. Access Token missing...');
       }
 
     } catch (error) {
       console.error('Login error:', error);
-      if (error.response) {
-        setError(error.response.data.message || 'Login failed');
-      } else {
-        setError('An error occurred. Please try again later.');
-      }
+      setError('An error occurred. Please try again later.');
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen ">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md p-8 space-y-6 bg-gradient-to-r from-purple-200 to-blue-300 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center text-gray-700">Login to your account</h2>
         <form onSubmit={onLoginSubmit} className="space-y-4">
