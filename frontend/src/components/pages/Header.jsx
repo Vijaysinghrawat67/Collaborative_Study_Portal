@@ -46,7 +46,7 @@ function Header() {
                                         <NavLink
                                             to="/"
                                             onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100"
+                                            className="block px-4 py-2  hover:text-orange-700 font-semibold hover:bg-gray-100"
                                         >
                                             Home
                                         </NavLink>
@@ -55,7 +55,7 @@ function Header() {
                                         <NavLink
                                             to="/about"
                                             onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100"
+                                            className="block px-4 py-2  hover:text-orange-700 font-semibold hover:bg-gray-100"
                                         >
                                             About
                                         </NavLink>
@@ -64,7 +64,7 @@ function Header() {
                                         <NavLink
                                             to="/services"
                                             onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100"
+                                            className="block px-4 py-2  hover:text-orange-700 font-semibold hover:bg-gray-100"
                                         >
                                             Services
                                         </NavLink>
@@ -72,8 +72,8 @@ function Header() {
                                     <li>
                                         <NavLink
                                             to="/contact"
-                                            onClick={() => setMenuOpen(false)}
-                                            className="block px-4 py-2 hover:bg-gray-100"
+                                            onClick={() => setMenuOpen(false)}  
+                                            className="block px-4 py-2  hover:text-orange-700 font-semibold hover:bg-gray-100"
                                         >
                                             Contact
                                         </NavLink>

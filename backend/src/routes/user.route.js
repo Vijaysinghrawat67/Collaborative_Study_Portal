@@ -2,6 +2,7 @@ import {Router} from 'express';
 import { loginUser, logOutUser, registerUser } from '../controllers/user.controller.js';
 import {veryfyJWT} from '../middleware/auth.middleware.js';
 import { createNotes, deleteNotes, getNotes, updateNotes } from '../controllers/notes.controller.js';
+import { searchVedios } from '../controllers/youtube.controller.js';
 
 
 
@@ -14,6 +15,7 @@ router.route("/createNote").post(veryfyJWT,createNotes)
 router.route("/getNote").get(veryfyJWT, getNotes)
 router.route("/update/:id").put(veryfyJWT, updateNotes)
 router.route("/delete/:id").delete(veryfyJWT,deleteNotes)
+router.route("/youtubeSearch").get(searchVedios)
 
 
 export default router;

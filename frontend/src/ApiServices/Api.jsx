@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useAuth } from '../authContest/AuthContext.jsx';
-
+import {useNavigate} from 'react-router-dom'
 const useApi =  () => {
-   const {accessToken} = useAuth();
+   const {accessToken, logout} = useAuth();
+   const navigate = useNavigate();
     
     const api = axios.create({
         baseURL : 'http://localhost:2000/api/user',
@@ -21,6 +22,19 @@ const useApi =  () => {
         },
         (error) => Promise.reject(error)
     );
+
+    // api.interceptors.response.use(
+    //     (response) =>response,
+    //     (error) =>{
+    //         if(error.response && error.response.status === 401){
+    //             //token has expired or is invalid
+    //             logout();
+    //             navigate('/login');
+    //         }
+    //         return Promise.reject(error);
+    //     }
+    // );
+
     return api;
 }
 

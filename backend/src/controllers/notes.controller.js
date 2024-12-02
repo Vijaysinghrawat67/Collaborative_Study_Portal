@@ -39,7 +39,7 @@ const createNotes = asyncHandler(async(req, res) => {
     )
 
      } catch (error) {
-        console.error('Error creating note:', error.message); // Log detailed error
+        //  console.error('Error creating note:', error.message); // Log detailed error
          return res .status(500) .json( new ApiResponse(500, null, "Something went wrong while creating notes") );
      }
     
