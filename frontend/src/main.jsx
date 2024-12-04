@@ -15,16 +15,24 @@ import Registration from './components/auth/Registration.jsx';
 import ForgotPassword from './components/auth/ForgotPassword.jsx';
 import UserProfile from './components/auth/UserProfile.jsx';
 import NotesContainer from './components/service/NotesRoute/Notes/NotesContainer.jsx';
-import ToDo from './components/service/ToDo.jsx';
-import Web from './components/service/Web.jsx'
+import YoutubeHome from './components/service/Youtube/YoutubeHome.jsx';
+import WebHome from './components/service/webSearch/WebHome.jsx';
+import CHome from './components/service/calculator/calPage/CalHome.jsx';
+
+import Dictionary from './components/service/Dictionary/Dictionary.jsx';
+import BooksPage from './components/service/Books/BooksPage.jsx';
+
+import TodoApp from './components/service/Todo/TodoApp.jsx';
+
 import Homework from './components/service/Homework.jsx';
-import Book from './components/service/Book.jsx';
-import Calculator from './components/service/Calculator.jsx';
-import Dictionary from './components/service/Dictionary.jsx';
+
 import CreateNote from './components/service/NotesRoute/Notes/CreateNote.jsx';
 import NotesList from './components/service/NotesRoute/Notes/NotesList.jsx';
 import PrivateRoute from './components/service/NotesRoute/PrivateRouteNote.jsx';  // Private route for protecting routes
-import YoutubeHome from './components/service/Youtube/YoutubeHome.jsx';
+import ScientificCalculatorPage from './components/service/calculator/calPage/ScientificCalPage.jsx';
+import UnitConverterPage from './components/service/calculator/calPage/UnitCalPage.jsx';
+import ComplexCalculator from './components/service/calculator/ComplexCalculator.jsx';
+import BookDetails from './components/service/Books/BookDetails.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -46,13 +54,27 @@ const router = createBrowserRouter(
       </Route>
 
       <Route path='services/youtube' element={<PrivateRoute element={<YoutubeHome/>} />} />
-      <Route path='services/todo' element={<PrivateRoute element={<ToDo />} />} />
-      <Route path='services/web-search' element={<PrivateRoute element={<Web />} />} />
+
+      <Route path='services/calculator/*' element={<PrivateRoute element={< CHome/>} />} />
+      <Route path='scientific' element={<ScientificCalculatorPage />} />
+      <Route path='unit-convertor' element={<UnitConverterPage />} />
+      <Route path='complex' element={<ComplexCalculator />} />
+
+      <Route path='services/dict' element={<PrivateRoute element={<Dictionary />} />} />
+  
+      <Route path='services/book' element={<PrivateRoute element={<BooksPage />} />} />
+      <Route path='services/book-details/:id' element={<PrivateRoute element={<BookDetails />} />} />
+
+
+
+      <Route path='services/todo' element={<PrivateRoute element={<TodoApp />} />} />
+      <Route path='services/web-search' element={<PrivateRoute element={<WebHome />} />} />
+      
       
       <Route path='services/homework' element={<PrivateRoute element={<Homework />} />} />
-      <Route path='services/book' element={<PrivateRoute element={<Book />} />} />
-      <Route path='services/calculator' element={<PrivateRoute element={<Calculator />} />} />
-      <Route path='services/dict' element={<PrivateRoute element={<Dictionary />} />} />
+      
+     
+      
     </Route>
   )
 );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SearchBar from './SearchBar';
-import SearchResults from './SearchResults';
-import VideoPlayer from './VideoPlayer';
+import SearchResults from './SearchResultd.jsx';
+import  VideoPlayer from './VedioPlayer.jsx';
 import useApi from '../../../ApiServices/Api.jsx';
 
 const YoutubeHome = () => {
