@@ -38,7 +38,7 @@ function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    Acme Inc, Street, State, Postal Code
+                                    Dehradun Uttarakhand India
                                 </div>
                             </div>
 
@@ -60,7 +60,7 @@ function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    +44 1234567890
+                                    +91 9006106542
                                 </div>
                             </div>
 
@@ -82,7 +82,7 @@ function Contact() {
                                     />
                                 </svg>
                                 <div className="ml-4 text-md tracking-wide font-semibold w-40">
-                                    info@acme.org
+                                    rawatvijaysingh857@gmail.com
                                 </div>
                             </div>
                         </div>

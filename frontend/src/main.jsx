@@ -24,7 +24,6 @@ import BooksPage from './components/service/Books/BooksPage.jsx';
 
 import TodoApp from './components/service/Todo/TodoApp.jsx';
 
-import Homework from './components/service/Homework.jsx';
 
 import CreateNote from './components/service/NotesRoute/Notes/CreateNote.jsx';
 import NotesList from './components/service/NotesRoute/Notes/NotesList.jsx';
@@ -33,6 +32,9 @@ import ScientificCalculatorPage from './components/service/calculator/calPage/Sc
 import UnitConverterPage from './components/service/calculator/calPage/UnitCalPage.jsx';
 import ComplexCalculator from './components/service/calculator/ComplexCalculator.jsx';
 import BookDetails from './components/service/Books/BookDetails.jsx';
+import HomeworkDashboard from './components/service/homework/HomeworkDashbord.jsx';
+import AddHomework from './components/service/homework/AddHomework.jsx';
+import HomeworkDetails from './components/service/homework/HomeworkDetails.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -71,7 +73,10 @@ const router = createBrowserRouter(
       <Route path='services/web-search' element={<PrivateRoute element={<WebHome />} />} />
       
       
-      <Route path='services/homework' element={<PrivateRoute element={<Homework />} />} />
+      <Route path='services/homework' element={<PrivateRoute element={<HomeworkDashboard />} />} />
+      
+      <Route path='services/homework/add' element={<PrivateRoute element={<AddHomework />} />} />
+      <Route path='services/homework/:id' element={<PrivateRoute element={<HomeworkDetails/>} />} />
       
      
       
