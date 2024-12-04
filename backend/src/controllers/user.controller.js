@@ -9,13 +9,13 @@ const generateAccessAndRefreshToken = async(userId) => {
     try {
         const user = await UserModel.findById(userId)
         if(!user){
-            console.log("user not found:", userId);
+            //console.log("user not found:", userId);
             throw new ApiError(404, "user not found")
         }
-        console.log("user found:", user);
+       // console.log("user found:", user);
 
         if(!user.generateAccessToken || !user.generateRefreshToken){
-            console.log("user does not have generation methods");
+           // console.log("user does not have generation methods");
             throw new ApiError(500, "user does not have token generation methods")
         }
 
@@ -28,7 +28,7 @@ const generateAccessAndRefreshToken = async(userId) => {
         return {accessToken, refreshToken}
         
     } catch (error) {
-        console.log("error during the token generation:", error);
+       // console.log("error during the token generation:", error);
         throw new ApiError(500,"something went wrong while generating access and refresh token")
     }
 }
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async(req, res) => {
     const existedUser = await UserModel.findOne({
         $or : [{userName}, {email}]
     })
-    console.log("existed user check: ", existedUser)
+    //console.log("existed user check: ", existedUser)
 
     if(existedUser){
         throw new ApiError(409, "user with email or username already exist.....")

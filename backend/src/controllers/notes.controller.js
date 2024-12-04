@@ -11,7 +11,7 @@ import {Notes} from  "../models/Notes.model.js";
 //create operation
 //send response
 const createNotes = asyncHandler(async(req, res) => {
-    console.log("receved data:", req.body); // Check if user ID is present
+    //console.log("receved data:", req.body); // Check if user ID is present
     const {title, content} = req.body;
 
     if(!title || !content){
